@@ -19,7 +19,7 @@ namespace Unity.log4net
 
         void IBuildPlanPolicy.BuildUp(IBuilderContext context)
         {
-            var method = GetName ?? _defaultGetName;
+            Func<Type, string, string> method = GetName ?? _defaultGetName;
 
             context.Existing = LogManager.GetLogger(method(context.ParentContext?.BuildKey.Type,  
                                                            context.ParentContext?.BuildKey.Name));
