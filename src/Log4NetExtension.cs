@@ -21,7 +21,7 @@ namespace Unity.log4net
         {
             Func<Type, string, string> method = GetName ?? _defaultGetName;
 
-            context.Existing = LogManager.GetLogger(method(context.ParentContext?.BuildKey.Type,  
+            context.Existing = LogManager.GetLogger(method(context.ParentContext?.BuildKey.Type as Type,  
                                                            context.ParentContext?.BuildKey.Name));
             context.BuildComplete = true;
         }
