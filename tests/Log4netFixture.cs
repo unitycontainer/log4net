@@ -36,7 +36,6 @@ namespace log4net.Tests
             _instance = _container.Resolve<LoggedType>();
         }
 
-
         [TestMethod]
         public void Log4net_can_resolve_test_type()
         {
@@ -58,7 +57,6 @@ namespace log4net.Tests
 
             Assert.AreEqual(message1, message2);
         }
-
 
         [TestMethod]
         public void Log4net_correct_type()
