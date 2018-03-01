@@ -25,7 +25,7 @@
   
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <TargetFrameworks>netstandard1.3;net47;net45;net4</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net47;net46;net45;net4</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
