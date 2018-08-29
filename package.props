@@ -1,12 +1,12 @@
 <Project>
 
   <PropertyGroup>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageReleaseNotes>This package is distributed as .NET Standard 1.3 and .NET 4.0, 4.5, 4.6, 4.7</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
-    <UnityContainerVersion>5.*</UnityContainerVersion>
+    <UnityContainerVersion>5.8.*</UnityContainerVersion>
     <UnityAbstractionsVersion>3.*</UnityAbstractionsVersion>
   </PropertyGroup>
 
