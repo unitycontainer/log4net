@@ -20,7 +20,6 @@
     <AssemblyOriginatorKeyFile>package.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <RootNamespace>Unity.log4net</RootNamespace>
-    <UnityAbstractions>..\..\Abstractions\src\Unity.Abstractions.csproj</UnityAbstractions>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -34,12 +33,17 @@
     <DebugType>Full</DebugType>
   </PropertyGroup>
 
-  <ItemGroup Condition="Exists('$(UnityAbstractions)')">
-    <ProjectReference Include="$(UnityAbstractions)" />
+
+  <PropertyGroup>
+    <UnityContainer>..\..\Container\src\Unity.Container.csproj</UnityContainer>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(UnityContainer)')">
+    <ProjectReference Include="$(UnityContainer)" />
   </ItemGroup>
 
-  <ItemGroup Condition="!Exists('$(UnityAbstractions)')">
-    <PackageReference Include="Unity.Abstractions" Version="$(UnityAbstractionsVersion)" />
+  <ItemGroup Condition="!Exists('$(UnityContainer)')">
+    <PackageReference Include="Unity.Container" Version="$(UnityContainerVersion)" />
   </ItemGroup>
 
 
