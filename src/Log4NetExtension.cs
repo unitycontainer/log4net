@@ -22,10 +22,10 @@ namespace Unity.log4net
         {
             Func<Type, string, string> method = GetName ?? _defaultGetName;
 #if NETSTANDARD1_3
-            context.Existing = LogManager.GetLogger(context.ParentContext?.BuildKey.Type);
+            context.Existing = LogManager.GetLogger(context.ParentContext?.Type);
 #else
-            context.Existing = LogManager.GetLogger(method(context.ParentContext?.BuildKey.Type,
-                                                           context.ParentContext?.BuildKey.Name));
+            context.Existing = LogManager.GetLogger(method(context.ParentContext?.Type,
+                                                           context.ParentContext?.Name));
 #endif
             context.BuildComplete = true;
         }
