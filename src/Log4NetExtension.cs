@@ -17,8 +17,7 @@ namespace Unity.log4net
             Context.Policies.Set(typeof(ILog), null, typeof(IBuildPlanPolicy), this);
         }
 
-        public void BuildUp<TBuilderContext>(ref TBuilderContext context)
-            where TBuilderContext : IBuilderContext
+        public void BuildUp(ref BuilderContext context)
         {
             Func<Type, string, string> method = GetName ?? _defaultGetName;
 #if NETSTANDARD1_3
