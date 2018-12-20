@@ -21,10 +21,10 @@ namespace Unity.log4net
         {
             Func<Type, string, string> method = GetName ?? _defaultGetName;
 #if NETSTANDARD1_3
-            context.Existing = LogManager.GetLogger(context.ParentContext?.Type);
+            context.Existing = LogManager.GetLogger(context.Parent?.Type);
 #else
-            context.Existing = LogManager.GetLogger(method(context.ParentContext?.Type,
-                                                           context.ParentContext?.Name));
+            context.Existing = LogManager.GetLogger(method(context.Parent?.Type,
+                                                           context.Parent?.Name));
 #endif
             context.BuildComplete = true;
         }
