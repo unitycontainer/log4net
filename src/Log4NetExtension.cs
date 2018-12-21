@@ -8,9 +8,9 @@ namespace Unity.log4net
 {
     public class Log4NetExtension : UnityContainerExtension, IBuildPlanPolicy
     {
-        private static readonly Func<Type, string, string> _defaultGetName = (t, n) => t.FullName;
+        private static readonly Func<Type, string> _defaultGetName = (t) => t.FullName;
 
-        public Func<Type, string, string> GetName { get; set; }
+        public Func<Type, string> GetName { get; set; }
 
         protected override void Initialize()
         {
@@ -19,12 +19,11 @@ namespace Unity.log4net
 
         public void BuildUp(ref BuilderContext context)
         {
-            Func<Type, string, string> method = GetName ?? _defaultGetName;
+            Func<Type, string> method = GetName ?? _defaultGetName;
 #if NETSTANDARD1_3
-            context.Existing = LogManager.GetLogger(context.Parent?.Type);
+            context.Existing = LogManager.GetLogger(context.DeclaringType);
 #else
-            context.Existing = LogManager.GetLogger(method(context.Parent?.Type,
-                                                           context.Parent?.Name));
+            context.Existing = LogManager.GetLogger(method(context.DeclaringType));
 #endif
             context.BuildComplete = true;
         }

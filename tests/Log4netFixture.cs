@@ -73,12 +73,12 @@ namespace log4net.Tests
 
             _container.RegisterType<LoggedType>(typeof(LoggedType).Name)
                       .Configure<Log4NetExtension>()
-                      .GetName = (t, n) => $"{t.Name}-{n}";
+                      .GetName = (t) => $"{t.Name}";
 
             var instance = _container.Resolve<LoggedType>(typeof(LoggedType).Name);
             instance.ResolvedLogger.Info(_message);
 
-            Assert.AreEqual($"{typeof(LoggedType).Name}-{typeof(LoggedType).Name}", _apender.ToString());
+            Assert.AreEqual($"{typeof(LoggedType).Name}", _apender.ToString());
         }
 
 
