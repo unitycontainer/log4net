@@ -6,7 +6,7 @@ using Unity.Policy;
 
 namespace Unity.log4net
 {
-    public class Log4NetExtension : UnityContainerExtension, IBuildPlanPolicy
+    public class Log4NetExtension : UnityContainerExtension
     {
         private static readonly Func<Type, string> _defaultGetName = (t) => t.FullName;
 
@@ -14,19 +14,14 @@ namespace Unity.log4net
 
         protected override void Initialize()
         {
-            Context.Policies.Set(typeof(ILog), null, typeof(IBuildPlanPolicy), this);
+            Context.Policies.Set(typeof(ILog), null, typeof(ResolveDelegateFactory), (ResolveDelegateFactory)GetResolver);
         }
 
-        public void BuildUp(ref BuilderContext context)
+        public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
         {
             Func<Type, string> method = GetName ?? _defaultGetName;
-#if NETSTANDARD1_3
-            context.Existing = LogManager.GetLogger(context.DeclaringType);
-#else
-            context.Existing = LogManager.GetLogger(method(context.DeclaringType));
-#endif
-            context.BuildComplete = true;
-        }
 
+            return (ref BuilderContext c) => LogManager.GetLogger(method(c.DeclaringType));
+        }
     }
 }
