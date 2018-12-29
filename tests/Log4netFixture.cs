@@ -78,7 +78,7 @@ namespace log4net.Tests
             var instance = _container.Resolve<LoggedType>(typeof(LoggedType).Name);
             instance.ResolvedLogger.Info(_message);
 
-            Assert.AreEqual($"{typeof(LoggedType).Name}", _apender.ToString());
+            Assert.AreEqual($"{typeof(LoggedType).FullName}", _apender.ToString());
         }
 
 
