@@ -1,11 +1,14 @@
 ﻿using log4net;
 using System;
+using System.Runtime.CompilerServices;
+using System.Security;
 using Unity.Builder;
 using Unity.Extension;
 using Unity.Policy;
 
 namespace Unity.log4net
 {
+    [SecuritySafeCritical]
     public class Log4NetExtension : UnityContainerExtension
     {
         private static readonly Func<Type, string> _defaultGetName = (t) => t.FullName;
@@ -19,9 +22,16 @@ namespace Unity.log4net
 
         public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
         {
-            Func<Type, string> method = GetName ?? _defaultGetName;
+            var method = GetName ?? _defaultGetName;
+            Type declaringType;
 
-            return (ref BuilderContext c) => LogManager.GetLogger(method(c.DeclaringType));
+            unsafe
+            {
+                var parenContext = Unsafe.AsRef<BuilderContext>(context.Parent.ToPointer());
+                declaringType = parenContext.RegistrationType;
+            }
+
+            return (ref BuilderContext c) => LogManager.GetLogger(method(declaringType));
         }
     }
 }
