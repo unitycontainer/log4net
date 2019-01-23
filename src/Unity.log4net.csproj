@@ -20,6 +20,7 @@
     <AssemblyOriginatorKeyFile>package.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <RootNamespace>Unity.log4net</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -36,11 +37,6 @@
 
   <PropertyGroup>
     <UnityContainer>..\..\Container\src\Unity.Container.csproj</UnityContainer>
-  </PropertyGroup>
-
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup Condition="Exists('$(UnityContainer)')">
