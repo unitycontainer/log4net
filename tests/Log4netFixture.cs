@@ -66,22 +66,6 @@ namespace log4net.Tests
             Assert.AreEqual(typeof(LoggedType).FullName, _apender.ToString());
         }
 
-        [TestMethod]
-        public void Log4net_change_name()
-        {
-            _apender.Layout = new PatternLayout("%c");
-
-            _container.RegisterType<LoggedType>(typeof(LoggedType).Name)
-                      .Configure<Log4NetExtension>()
-                      .GetName = (t) => $"{t.Name}";
-
-            var instance = _container.Resolve<LoggedType>(typeof(LoggedType).Name);
-            instance.ResolvedLogger.Info(_message);
-
-            Assert.AreEqual($"{typeof(LoggedType).FullName}", _apender.ToString());
-        }
-
-
         public class LoggedType
         {
             public LoggedType(ILog log)

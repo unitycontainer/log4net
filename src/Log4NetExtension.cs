@@ -12,10 +12,6 @@ namespace Unity.log4net
     [SecuritySafeCritical]
     public class Log4NetExtension : UnityContainerExtension
     {
-        private static readonly Func<Type, string> _defaultGetName = (t) => t.FullName;
-
-        public Func<Type, string> GetName { get; set; }
-
         protected override void Initialize()
         {
             Context.Policies.Set(typeof(ILog), UnityContainer.All, typeof(ResolveDelegateFactory), (ResolveDelegateFactory)GetResolver);
@@ -23,7 +19,6 @@ namespace Unity.log4net
 
         public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
         {
-            var method = GetName ?? _defaultGetName;
             Type declaringType;
 
             unsafe
@@ -32,7 +27,7 @@ namespace Unity.log4net
                 declaringType = parenContext.RegistrationType;
             }
 
-            return (ref BuilderContext c) => LogManager.GetLogger(method(declaringType));
+            return (ref BuilderContext c) => LogManager.GetLogger(declaringType);
         }
     }
 }
