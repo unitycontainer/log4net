@@ -20,7 +20,6 @@
     <AssemblyOriginatorKeyFile>package.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <RootNamespace>Unity.log4net</RootNamespace>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFrameworks>netstandard1.3;net46</TargetFrameworks>
   </PropertyGroup>
   
