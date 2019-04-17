@@ -15,6 +15,7 @@ namespace log4net.Tests
         private static ILoggerRepository _repository;
         private static StringAppender _apender;
         private LoggedType _instance;
+        private LoggedType2 _instance2;
         private string _message;
 
         [ClassInitialize]
@@ -34,6 +35,7 @@ namespace log4net.Tests
             _apender.Reset();
             _message = Guid.NewGuid().ToString();
             _instance = _container.Resolve<LoggedType>();
+            _instance2 = _container.Resolve<LoggedType2>();
         }
 
         [TestMethod]
@@ -42,6 +44,19 @@ namespace log4net.Tests
             Assert.IsNotNull(_instance);
             Assert.IsNotNull(_instance.ResolvedLogger);
             Assert.IsNotNull(_instance.StaticLogger);
+
+            Assert.AreEqual(
+                _instance.ResolvedLogger.Logger.Name,
+                _instance.StaticLogger.Logger.Name);
+        }
+
+        [TestMethod]
+        public void Log4net_can_resolve_test_type_graph()
+        {
+            Assert.IsNotNull(_instance2);
+            Assert.AreEqual(
+                _instance2.ResolvedLogger.Logger.Name,
+                _instance2.StaticLogger.Logger.Name);
         }
 
         [TestMethod]
@@ -71,8 +86,25 @@ namespace log4net.Tests
             public LoggedType(ILog log)
             {
                 ResolvedLogger = log;
-                StaticLogger = LogManager.GetLogger(typeof(LoggedType));
+                StaticLogger = LogManager.GetLogger(GetType());
             }
+
+            public ILog ResolvedLogger { get; }
+
+
+            public ILog StaticLogger { get; }
+        }
+
+        public class LoggedType2
+        {
+            public LoggedType2(LoggedType inner, ILog log)
+            {
+                ResolvedLogger = log;
+                StaticLogger = LogManager.GetLogger(GetType());
+                Inner = inner;
+            }
+
+            public LoggedType Inner { get; }
 
             public ILog ResolvedLogger { get; }
 
