@@ -12,7 +12,7 @@ namespace Unity.log4net
     {
         protected override void Initialize()
         {
-            Context.Policies.Set(typeof(ILog), UnityContainer.All, typeof(ResolveDelegateFactory), (ResolveDelegateFactory)GetResolver);
+            Context.Policies.Set(typeof(ILog), typeof(ResolveDelegateFactory), (ResolveDelegateFactory)GetResolver);
         }
 
         public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
