@@ -20,7 +20,7 @@ namespace Unity.log4net
         {
             Type declaringType = context.DeclaringType;
 
-            return (ref BuilderContext c) => LogManager.GetLogger(declaringType);
+            return (ref BuilderContext c) => LogManager.GetLogger(c.DeclaringType);
         }
     }
 }
