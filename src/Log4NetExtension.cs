@@ -1,5 +1,4 @@
 ﻿using log4net;
-using System;
 using System.Security;
 using Unity.Builder;
 using Unity.Extension;
@@ -18,9 +17,7 @@ namespace Unity.log4net
 
         public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
         {
-            Type declaringType = context.DeclaringType;
-
-            return (ref BuilderContext c) => LogManager.GetLogger(declaringType);
+            return (ref BuilderContext c) => LogManager.GetLogger(c.DeclaringType);
         }
     }
 }
