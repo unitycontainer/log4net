@@ -18,8 +18,6 @@ namespace Unity.log4net
 
         public ResolveDelegate<BuilderContext> GetResolver(ref BuilderContext context)
         {
-            Type declaringType = context.DeclaringType;
-
             return (ref BuilderContext c) => LogManager.GetLogger(c.DeclaringType);
         }
     }
