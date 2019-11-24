@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/3x9gf21l6qqxo9rn/branch/master?svg=true)](https://ci.appveyor.com/project/IoC-Unity/log4net/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/3x9gf21l6qqxo9rn/branch/v5.x?svg=true)](https://ci.appveyor.com/project/IoC-Unity/log4net/branch/v5.x)
 [![License](https://img.shields.io/badge/license-apache%202.0-60C060.svg)](https://github.com/IoC-Unity/log4net/blob/master/LICENSE)
 [![NuGet](https://img.shields.io/nuget/dt/Unity.log4net.svg)](https://www.nuget.org/packages/Unity.log4net)
 [![NuGet](https://img.shields.io/nuget/v/Unity.log4net.svg)](https://www.nuget.org/packages/Unity.log4net)
