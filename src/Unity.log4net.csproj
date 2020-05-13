@@ -7,7 +7,7 @@
     <AssemblyVersion>$(Version).0</AssemblyVersion>
     <PackageId>Unity.log4net</PackageId>
     <Description>Unity adapter for log4net</Description>
-    <Copyright>Copyright © Unity Container Project 2018</Copyright>
+    <Copyright>Copyright © .NET Foundation and Contributors. All Rights Reserved</Copyright>
     <PackageProjectUrl>https://github.com/unitycontainer/log4net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/unitycontainer/log4net</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/unitycontainer/log4net/blob/master/LICENSE</PackageLicenseUrl>
